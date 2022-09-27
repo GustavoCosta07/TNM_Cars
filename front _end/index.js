@@ -38,7 +38,7 @@ const perguntas = [
         </select>`
     },
     {
-        pergunta: "Para você, é importante que o veículo tenha um nível de consumo de combustíve baixo, médio ou alto?",
+        pergunta: "Podemos te indicar veículos com consumo de combustíve baixo, médio ou alto?",
         resposta: `<select name="economico">
         <option value="baixo">1</option>
         <option value="medio">2</option>
