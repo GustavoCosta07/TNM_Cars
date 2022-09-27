@@ -7,7 +7,6 @@ app.use(express.json())
 app.use('/static', express.static(__dirname + '/imagens'));
 
 app.post('/carro_ideal', async (request, response) => {
-    // 5 - aplicar filtro consumo combustível () 
     const data = request.body
     console.log(data)
     const valorParcela = Number.parseFloat(data.valorParcela.split(',').join('.'))
@@ -17,6 +16,7 @@ app.post('/carro_ideal', async (request, response) => {
     const valorCarroMenosPorcentagem = (totalCarro - porcentagem)
     const cambio = data.cambio
     const estilo = data.estilo
+    const consumo = data.custoCombutivel
 
     const estilosPermitidos = {
         hatch: `estilo = 'hatch'`,
@@ -26,7 +26,21 @@ app.post('/carro_ideal', async (request, response) => {
         todos: `(estilo = 'hatch' or estilo = 'sedan' or estilo = 'suv' or estilo = 'picape')`
     }
 
+    const consumosPermitidos = {
+        baixo: `consumo = 'baixo'`,
+        medio: `consumo = 'medio'`,
+        alto: `consumo = 'alto'`,
+        todos: `consumo = 'baixo' or consumo = 'medio' or consumo = 'alto'` 
+    }
+
     let select = `SELECT * FROM carros where ${estilosPermitidos[data.estilo]}`
+
+    if (data.custoCombutivel === 'todos') {
+        select += ` and (consumo = 'baixo' or consumo = 'medio' or consumo = 'alto')`
+    }else {
+        select += ` and consumo = '${consumo}'`
+    }
+
 
     if (data.cambio === 'todos') {
         select += ` and (cambio = 'manual' or cambio = 'automatico')`

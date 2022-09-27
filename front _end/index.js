@@ -38,11 +38,12 @@ const perguntas = [
         </select>`
     },
     {
-        pergunta: "Numa escala de 1 a 3, o quão importante pra você é que o carro seja econômico?",
+        pergunta: "Para você, é importante que o veículo tenha um nível de consumo de combustíve baixo, médio ou alto?",
         resposta: `<select name="economico">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="baixo">1</option>
+        <option value="medio">2</option>
+        <option value="alto">3</option>
+        <option value="todos">todos</option>
     </select>`
     }
 ]
