@@ -38,7 +38,5 @@ module.exports = async (request, response) => {
 
     const carros = await connection.awaitQuery(select);
 
-    console.log(select);
-
     response.json(carros)
 }

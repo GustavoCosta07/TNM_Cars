@@ -1,2 +1,3 @@
 const carrosRouter = require('./carros')
-module.exports = {carrosRouter} 
+const usersRouter = require('./users')
+module.exports = {carrosRouter, usersRouter} 
