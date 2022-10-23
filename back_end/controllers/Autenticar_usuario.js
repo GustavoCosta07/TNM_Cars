@@ -18,22 +18,22 @@ module.exports = async (request, response) => {
 
     const senhaEvalida = await bcrypt.compare(senha, senhaCryp);
 
-    if (senhaEvalida) {
+    if (!senhaEvalida) {
+        return response.status(400).json({ error: 'email ou senha inválidos' })
+    }
 
-        const chave = {
+    const token = jwt.sign(
+        {
             id,
             nome,
             email
+        },
+        process.env.SECRET,
+        {
+            expiresIn: process.env.TIME_SECRET
         }
+    );
 
-        const token = jwt.sign(
-            chave,
-            process.env.SECRET, 
-            {
-                expiresIn: '1h' 
-            }
-        );
+    response.status(200).json({ token, nome });
 
-        response.status(200).json({ token, nome });
-    }
 }
