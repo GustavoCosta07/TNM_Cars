@@ -26,7 +26,6 @@ exports.desfavoritar = async (request, response) => {
     }
 
     const query = `DELETE FROM  favoritos WHERE idUser = ${request.usuario.id} AND idCarro = ${idCarro}`
-    console.log(query)
 
     const deleteCarros = await connection.awaitQuery(query)
 
