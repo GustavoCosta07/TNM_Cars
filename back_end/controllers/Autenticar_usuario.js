@@ -6,6 +6,14 @@ module.exports = async (request, response) => {
 
     const { email, senha } = request.body
 
+    if (!email && senha) {
+        return response.status(400).json({ error: 'email ou senha inválidos' })
+    }
+
+    if (senha.length < 6) {
+        return response.status(400).json({ error: 'email ou senha inválidos' })
+    }
+    
     const query = `SELECT id, senha as senhaCryp, nome FROM users where email = "${email}"`
 
     const dados = await connection.awaitQuery(query)
