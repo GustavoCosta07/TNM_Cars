@@ -75,8 +75,6 @@ const buscarCarros = () => {
     }).then(dados => {
         console.log(dados)
     })
-
-    
 }
 
 function openModal() {

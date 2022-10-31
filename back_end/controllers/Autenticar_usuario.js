@@ -4,9 +4,11 @@ const jwt = require('jsonwebtoken')
 
 module.exports = async (request, response) => {
 
-    const { email, senha } = request.body
+    const { senha } = request.body
 
-    if (!email || !senha) {
+    const emailUsers = request.body.email
+
+    if (!emailUsers || !senha) {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
 
@@ -14,16 +16,17 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
     
-    const query = `SELECT id, senha as senhaCryp, nome FROM users where email = "${email}"`
+    const query = `SELECT id, senha as senhaCryp, nome, email FROM users where email = "${emailUsers}"`
 
     const dados = await connection.awaitQuery(query)
-    // console.log(dados)
-    const { senhaCryp, nome, id } = dados[0]
-
-    if (!senhaCryp) {
+    console.log(dados)
+    
+    if (!dados[0]) {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
-
+    
+    const { senhaCryp, nome, id, email } = dados[0]
+    
     const senhaEvalida = await bcrypt.compare(senha, senhaCryp);
 
     if (!senhaEvalida) {
