@@ -27,14 +27,6 @@ module.exports = async (request, response) => {
     const cambio = data.cambio
     const consumo = data.custoCombutivel
 
-    if (!data) {
-        console.log('la')
-    }
-
-    if (!data.valorParcela || !data.qtdParcelas || !data.porcentagem || !data.cambio || !data.custoCombutivel || !data.estilo) {
-        return response.status(400).json({ error: 'O preenchimento de todos os campos são obrigatórios' })
-    }
-
     const estilosPermitidos = {
         hatch: `estilo = 'hatch'`,
         sedan: `estilo = 'sedan'`,
