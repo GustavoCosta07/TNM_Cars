@@ -68,9 +68,11 @@ const buscarCarros = () => {
         // body: JSON.stringify({a: 1, b: 'Textual content'}),
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5vbWUiOiJsZW9uYXJkbyIsImVtYWlsIjoibGVvbmFyZG9AZ21haWwuY29tIiwiaWF0IjoxNjY3NDM4NDI4LCJleHAiOjE2Njc0NDAyMjh9.q0f76qMjaLE9Gnt9niLNmCGdlrVor4PJF6dFBA6EXjM'
         }
     }).then(dados => {
+        console.log(dados)
         return dados.json()
     }).then(dados => {
         console.log(dados)

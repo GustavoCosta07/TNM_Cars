@@ -13,7 +13,6 @@ module.exports = async (request, response, next) => {
     try {
 
         usuario = jwt.verify(token, process.env.SECRET)
-
     } catch (error) {
         return response.status(400).json({ error: 'token inválido' })
     }

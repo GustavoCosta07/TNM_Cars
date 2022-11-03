@@ -19,7 +19,6 @@ module.exports = async (request, response) => {
     const query = `SELECT id, senha as senhaCryp, nome, email FROM users where email = "${emailUsers}"`
 
     const dados = await connection.awaitQuery(query)
-    console.log(dados)
     
     if (!dados[0]) {
         return response.status(400).json({ error: 'email ou senha inválidos' })
@@ -45,6 +44,6 @@ module.exports = async (request, response) => {
         }
     );
 
-    response.status(200).json({ token, nome });
+    response.status(200).json({ token, nome, email});
 
 }
