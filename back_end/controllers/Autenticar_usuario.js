@@ -16,7 +16,7 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
     
-    const query = `SELECT id, senha as senhaCryp, nome, email FROM users where email = "${emailUsers}"`
+    const query = `SELECT id, senha as senhaCryp, nome, usuario, telefone, email FROM users where email = "${emailUsers}"`
 
     const dados = await connection.awaitQuery(query)
     
@@ -24,7 +24,7 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
     
-    const { senhaCryp, nome, id, email } = dados[0]
+    const { senhaCryp, nome, id, email, usuario, telefone } = dados[0]
     
     const senhaEvalida = await bcrypt.compare(senha, senhaCryp);
 
@@ -36,7 +36,9 @@ module.exports = async (request, response) => {
         {
             id,
             nome,
-            email
+            email,
+            usuario,
+            telefone
         },
         process.env.SECRET,
         {
@@ -44,6 +46,6 @@ module.exports = async (request, response) => {
         }
     );
 
-    response.status(200).json({ token, nome, email});
+    response.status(200).json({ token, nome, email, usuario, telefone});
 
 }
