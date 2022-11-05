@@ -1,0 +1,13 @@
+criar um formulário só, que preenche automaticamente os dados ja obtidos e tbm preencha um campo de 
+senha atual e email atual
+ao clicar em salvar, chama a rota de autenticar usuario novamente passando o email atual e a senha atual
+caso esteja tuddo cortreto vai gerar um novo token, pegar esse novo token e terminar a requisição de edição
+passando o novo token e com os dados preenchidos anteriormente 
+
+edições para davi
+foi alterado dentro de controllers: autenticar usuario
+cadastrar usuario
+editar usuario
+
+dentro de routes 
+users.js
