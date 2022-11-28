@@ -54,5 +54,16 @@ module.exports = async (request, response) => {
 
     const carros = await connection.awaitQuery(select);
 
+    for (const {id} of carros) {
+
+        const existeCarro =  await connection.awaitQuery(`select * from carros_populares where idcarro = ${id}`)
+        if (existeCarro[0]) {
+            const voto = existeCarro[0].votos +1
+            await connection.awaitQuery(`update carros_populares set votos = ${voto} where idcarro = ${id}`) 
+        } else {
+            await connection.awaitQuery(`INSERT INTO carros_populares (idcarro, votos) values (?,?)`, [id, 1])
+        }
+    }
+
     response.json(carros)
 }

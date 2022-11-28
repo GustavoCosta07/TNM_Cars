@@ -69,7 +69,7 @@ const buscarCarros = () => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5vbWUiOiJsZW9uYXJkbyIsImVtYWlsIjoibGVvbmFyZG9AZ21haWwuY29tIiwiaWF0IjoxNjY3NDM4NDI4LCJleHAiOjE2Njc0NDAyMjh9.q0f76qMjaLE9Gnt9niLNmCGdlrVor4PJF6dFBA6EXjM'
+            'token': ''
         }
     }).then(dados => {
         console.log(dados)
