@@ -52,6 +52,6 @@ module.exports = async (request, response) => {
         }
     );
 
-    response.status(200).json({ token, nome, email, usuario, telefone});
+    response.status(200).json({ token, nome, email, usuario, telefone, id});
 
 }
