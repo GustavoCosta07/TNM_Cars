@@ -16,7 +16,7 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
     
-    const query = `SELECT id, senha as senhaCryp, nome, usuario, telefone, email FROM users where email = "${emailUsers}"`
+    const query = `SELECT id, senha as senhaCryp, nome, usuario, confirmacao, telefone, email FROM users where email = "${emailUsers}"`
 
     const dados = await connection.awaitQuery(query)
     
@@ -24,6 +24,10 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
     
+    if (dados[0].confirmacao == 'N') {
+        return response.status(400).json({ message: `Olá, Favor confirmar seu cadastro pelo e-mail enviado para ${dados[0].email}` })
+    }
+
     const { senhaCryp, nome, id, email, usuario, telefone } = dados[0]
     
     const senhaEvalida = await bcrypt.compare(senha, senhaCryp);
@@ -31,6 +35,8 @@ module.exports = async (request, response) => {
     if (!senhaEvalida) {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
+
+    console.log(dados[0].confirmacao)
 
     const token = jwt.sign(
         {
