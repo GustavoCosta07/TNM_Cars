@@ -57,7 +57,7 @@ module.exports = async (request, response) => {
             },
             segredo,
             {
-                expiresIn: '2m'
+                expiresIn: '30m'
             }
         )
 

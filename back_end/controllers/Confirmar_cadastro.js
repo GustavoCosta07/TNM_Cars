@@ -13,9 +13,10 @@ module.exports =  async (request, response) => {
         const query = `update users set confirmacao = 'Y' where id = ${dadosDecodificados.id}`
         let confirmacao = await connection.awaitQuery(query)
 
-        response.send(`<h1> sua conta foi confirmada com sucesso!<h1>`)
+        response.send(`<h1> seu cadastro foi confirmado com sucesso, retorne para a página de Login e acesse o site com suas credenciais<h1>`)
+        // response.sendFile("C:\\Users\\gucos\\Desktop\\TNM_cars\\front _end\\index.html")
     } catch (error) {
-        response.send("<h1>Token não autorizado!<h1>")
+        response.send("<h1>Link expirado!<h1>")
     }
 }
 
