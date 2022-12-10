@@ -1,31 +1,36 @@
-
+const { query } = require('express')
 const connection = require('../connection')
 
 module.exports = async (request, response) => {
     const data = request.body
 
     if (data.cambio && data.estilo && data.anoMaximo && data.anoMinimo && data.precoMaximo && data.precoMinimo) {
-        console.log('entrou aq')
+        
         let querySelect = `select * from carros `
+
+        let comando = 'where'
 
         if (data.cambio == 'Todos') {
             querySelect += ``
         } else {
             querySelect += `where cambio = '${data.cambio}' `
         }
-
+        if (querySelect != 'select * from carros ') {
+            comando = 'where'
+        }
+        
         if (data.estilo == 'Todos') {
             querySelect += ``
         } else {
-            querySelect += `and estilo = '${data.estilo}' `
+            querySelect += `${comando} estilo = '${data.estilo}' `
         }
 
         if (data.anoMinimo == 'Todos' && data.anoMaximo == 'Todos') {
             querySelect += ``
         }
-        let comando = 'where'
+        
 
-        if (querySelect != 'select * from carros ') {
+        if (querySelect != 'select * from carros') {
             comando = 'and'
         }
 
@@ -35,6 +40,10 @@ module.exports = async (request, response) => {
 
         if (data.anoMaximo == 'Todos' && data.anoMinimo != 'Todos') {
             querySelect += `${comando} ano between ${data.anoMinimo} and 3000 `
+        }
+
+        if (querySelect == 'select * from carros ') {
+            comando = 'where'
         }
 
         if (data.anoMaximo != 'Todos' && data.anoMinimo != 'Todos') {
@@ -55,15 +64,13 @@ module.exports = async (request, response) => {
         if (data.precoMaximo == 'Todos' && data.precoMinimo != 'Todos') {
             querySelect += `${comando} valor between ${data.precoMinimo} and 900000 `
         }
-
+       
         if (data.precoMaximo != 'Todos' && data.precoMinimo != 'Todos') {
             querySelect += `${comando} valor between ${data.precoMinimo} and ${data.precoMaximo} `
         }
-
-        console.log(querySelect)
+        
         const carros = await connection.awaitQuery(querySelect);
-
-
+        
         for (const { id } of carros) {
 
             const existeCarro = await connection.awaitQuery(`select * from carros_populares where idcarro = ${id}`)
@@ -78,61 +85,6 @@ module.exports = async (request, response) => {
         return response.json(carros)
     }
 
-
-    if (data.estado && data.marca && data.carroceria && data.cambio) {
-
-        const { estado, marca, carroceria, cambio } = request.body
-
-        console.log('entrou aq agora cara')
-
-        let querySelect = `select * from carros `
-
-        if (estado == 'Todos') {
-            querySelect += ``
-        } else {
-            querySelect += `where estado = '${estado}' `
-        }
-
-
-        let comando = 'where'
-
-        if (querySelect != 'select * from carros ') {
-            comando = 'and'
-        }
-
-
-
-        if (marca == 'Todos') {
-            querySelect += ``
-        } else {
-            querySelect += `${comando} marca = '${marca}' `
-        }
-
-        if (querySelect != 'select * from carros ') {
-            comando = 'and'
-        }
-
-        if (carroceria == 'Todos') {
-            querySelect += ``
-        } else {
-            querySelect += `${comando} estilo = '${carroceria}' `
-        }
-
-        if (querySelect != 'select * from carros ') {
-            comando = 'and'
-        }
-
-        if (cambio == 'Todos') {
-            querySelect += ``
-        } else {
-            querySelect += `${comando} cambio = '${cambio}'`
-        }
-
-        console.log(querySelect)
-        const carros = await connection.awaitQuery(querySelect);
-        return response.json(carros)
-
-    }
 
 
 }
