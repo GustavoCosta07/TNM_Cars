@@ -29,7 +29,7 @@ exports.disparar = async ({ para, assunto, texto, ehHtml = false}) => {
     if (erro) {
       console.log(erro);
     } else {
-      console.log('Email enviado: ' + info.response);
+      // console.log('Email enviado: ' + info.response);
     }
   });
 }

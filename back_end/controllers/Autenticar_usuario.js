@@ -36,8 +36,6 @@ module.exports = async (request, response) => {
         return response.status(400).json({ error: 'email ou senha inválidos' })
     }
 
-    console.log(dados[0].confirmacao)
-
     const token = jwt.sign(
         {
             id,

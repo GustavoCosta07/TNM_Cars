@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <script src="Assets/js/app.js" defer></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <title>Perfil</title>
+</head>
+
+<body>
+    <!-- navbar inicio -->
+    <header>
+        <nav>
+            <div class="logo">TNM Cars</div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../carros/carros.html">Carros</a></li>
+                <li id="favoritos"><a href="../favoritos/meus-favoritos.html" >Favoritos</a></li>
+                <li><a href="../pesquisa/pesquisa.html">Notícias</a></li>
+                <li id="perfil"><a href="../perfil/perfil.html">Perfil</a> </li>
+
+            </ul>
+        </nav>
+    </header>
+    <!-- navbar fim -->
+    <main>
+        <div class="main">
+            <div class="conteudo-principal">
+                <div class="conteudo-principal-esquerda">
+                    <div class="titulo">
+                        <h1 style="color: white; font-weight:400;">Informações de usuario</h1>
+                    </div>
+                    <div class="dados-usuario">
+                        <div class="dado" id="dados-nome">
+                            <h1 style="display: inline; font-size:x-large;">Nome: </h1>
+                            <h2 style="display: inline;">Seu nome completo</h2>
+                        </div>
+                        <div class="dado" id="dados-username">
+                            <h1 style="display: inline; font-size:x-large;">Usuario: </h1>
+                            <h2 style="display: inline;">algum_usuario </h2>
+                        </div>
+                        <div class="dado" id="dados-telefone">
+                            <h1 style="display: inline; font-size:x-large;">Telefone: </h1>
+                            <h2 style="display: inline;">(99) 99999-9999 </h2>
+                        </div>
+                        <div class="dado" id="dados-email">
+                            <h1 style="display: inline; font-size:x-large;">Email: </h1>
+                            <h2 style="display: inline;">algum_email@email.com</h2>
+                        </div>
+                        <div class="dado">
+                            <h1 style="display: inline; font-size:x-large;">Senha: </h1>
+                            <h2 style="display: inline;">*******</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="conteudo-principal-direita">
+                    <div class="titulo-alterar">
+                        <h1>Formulário de alteração de dados</h1>
+                    </div>
+                    <div class="alterar-dados">
+                        <div class="alterar-dados-linha-1">
+                            <div class="input-alteracao-esquerda" id="dados-nome-alteracao">
+                                <label for="nome-completo">Nome completo</label>
+                                <input id="nome" type="text" name="nome-completo" placeholder="Seu nome completo">
+                            </div>
+
+                            <div class="input-alteracao-direita" id="dados-username-alteracao">
+                                <label for="user">Usuário</label>
+                                <input id="usuario" type="text" name="user" placeholder="algum_usuario">
+                            </div>
+                        </div>
+
+                        <div class="alterar-dados-linha-2">
+                            <div class="input-alteracao-esquerda" id="dados-email-alteracao">
+                                <label for="email">E-mail</label>
+                                <input id="email" type="email" name="email" placeholder="algum_email@email.com">
+                            </div>
+
+                            <div class="input-alteracao-direita" id="dados-telefone-alteracao">
+                                <label for="number">Telefone</label>
+                                <input id="telefone" type="tel" name="number" placeholder="(99) 99999-9999">
+                            </div>
+                        </div>
+
+                        <div class="alterar-dados-linha-3">
+                            <div class="input-alteracao-esquerda">
+                                <label for="password">Senha Atual</label><br>
+                                <input id="senha-atual" type="password" name="password" placeholder="Digite sua senha"
+                                    required>
+                            </div>
+
+
+                            <div class="input-alteracao-direita">
+                                <label for="mudar-senha">Nova senha</label><br>
+                                <input id="senha-alterar" type="password" name="mudar-senha"
+                                    placeholder="Digite sua senha nova">
+                            </div>
+                        </div>
+                        <div class="btn-alterar">
+                            <div class="btn-cima">
+                                <button  onclick="alterarDados()"><a style="color: black;">Alterar dados</a> </button>
+                            </div>
+
+                            <div class="btns-parte-baixo">
+                                <div class="btn-sair">
+                                    <button onclick="deslogar()"><a style="color: black;" >Deslogar</a> </button>
+                                </div>
+                                <div class="btn-apagar">
+                                    <button onclick="deletaDados()"><a style="color: black;" >Apagar conta</a> </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="content-footer">
+            <div class="left box">
+                <div class="upper">
+                    <div class="topic">Sobre nós</div>
+                    <p>Somos um portal de consulta de preços voltados ao mercado automotivo, em busca de fornecer ajuda a interessados em comprar do seu futuro automóvel. A razão da nossa existência é justamente ser o fator facilitador ao procurar de um veículo. Com nosso verdadeiro objetivo sendo se é tornar referência em pesquisa de caros usados, valorizando a qualidade das pesquisas, gerando sempre a melhor experiência ao nosso cliente.</p>
+                </div>
+                <div class="lower">
+                    <div class="topic">Contato</div>
+                    <div class="phone">
+                        <a href="#"><i class="fas fa-phone-volume"></i>+007 9089 6767</a>
+                    </div>
+                    <div class="email">
+                        <a href="#"><i class="fas fa-envelope"></i>tnmContato@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right box">
+                <div class="topic">Inscreva-se para receber novidades</div>
+                <form action="#">
+                    <input type="text" placeholder="Digite seu email">
+                    <input type="submit" name="" value="Inscrever">
+                    <div class="media-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>Copyright © 2022 <a href="#">TNM Cars</a> Todos os direitos reservados</p>
+        </div>
+    </footer>
+</body>
+
+</html>
